@@ -67,82 +67,28 @@ class Connection
         print_r($arrs);
 //        foreach ($arrs as $row)
 
-//        print ("<form action='update.php' method='POST' >");
-
-
 print ("<table border=1>");
 //foreach ($arrs as $key => $value) {
 foreach ($arrs as $arr) 
 {
     print ("<tr>");
-
-    print ("<form action='update.php' method='POST' >");
-
-
     foreach ($arr as $key => $value) 
     {
     // $arr[3] will be updated with each value from $arr...
     //echo "{$key} => {$value} ";
         //print ("{$key} => {$value} ");
-
-
-        print ("<td>");
-        print ("{$key}");
-        if ($key == 'id')
-           $id = $value;
-        print ("</td>");
-        print ("<td>");
-        print ("{$value}");
-        print ("</td>");
-
-
-
-  
-
-/*
         print ("<td>");
         print ("{$key}");
         print ("</td>");
         print ("<td>");
         print ("{$value}");
         print ("</td>");
-*/
- 
-
-
- 
  
     //print_r($arr);
     }
-
-
-    print ("<td>");
-    print ("<input type='hidden' name= 'id' value= $id />");
-    print ("<input type='submit' value= 'update' />");
-    print ("</td>");
-    print ("</form>");       
-
-    print ("<form action='delete.php' method='POST' >");
-   
-
-    print ("<td>");
-    print ("<input type='hidden' name= 'id' value= $id />");
-
-
-    print ("<input type='submit' value= 'delete'/>");
-
-    print ("</td>");
-    print ("</form>");       
-
-
-
-    print ("</tr>");
+    print ("<tr>");
 }
 print ("</table>");
-
- //       print ("</form>");       
-
-
 /*
         foreach ($arrs as $key => $value)
         { 
