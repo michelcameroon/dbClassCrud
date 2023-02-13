@@ -115,12 +115,9 @@ foreach ($arrs as $arr)
     //print_r($arr);
     }
 
-    print ("<form action='update..php' method='POST' >");
 
     print ("<td>");
     print ("<input type='hidden' name= 'id' value= $id />");
-    print ("<input type='hidden' name= 'firstName' value= $firstName />");
-    print ("<input type='hidden' name= 'lstaName' value= $lastName />");
     print ("<input type='submit' value= 'update' />");
     print ("</td>");
     print ("</form>");       
@@ -172,51 +169,6 @@ print ("</table>");
  
     }
 
-
-    public function queryListOne($id)
-    {
-        echo "begin listOne";
-        //$stmt = $this->db->prepare('select * from users where id = $id');
-        $stmt = $this->db->prepare('select * from users where id= ?');
-        //$stmt = $this->db->prepare('select * from users where id=:id'); // works
-
-        //$stmt = $this->db->prepare('select * from users');
-        //$stmt->execute(['id' => $id]);
-        $stmt->execute([$id]);
-
-        //$arrs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $arrs = $stmt->fetch();
-
-        print ("arrs = ");
-        print_r($arrs);
-        return $arrs;
-
-
-    }
-
-
-
-
-
-
-    public function delete($id)
-    { 
-
-        echo "begin delete";
-        $sql = "DELETE FROM users WHERE id=?";
-        $stmt= $this->db->prepare($sql);
-        $stmt->execute([$id]);
-    }
- 
-    public function update($firstName, $lastName, $id)
-    { 
-        echo "begin update";
-        $sql = "UPDATE users SET firstName=?, lastName=? WHERE id=?";
-        $stmt= $this->db->prepare($sql);
-        $stmt->execute([$firstName, $lastName, $id]);
-        
-    }
- 
 
  
     public function Close()

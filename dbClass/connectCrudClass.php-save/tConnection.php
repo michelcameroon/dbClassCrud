@@ -1,6 +1,6 @@
 <?php
 echo "begin";
-include_once 'connection.php';
+include 'connection.php';
 
 $conec = new Connection();
 
@@ -30,7 +30,7 @@ catch(PDOException $ex){
 
 $queryList = $conec->queryList("aa");
 
-//$del = $conec->delete($id)
+
 
 echo "<br/>end t"; 
 ?>
