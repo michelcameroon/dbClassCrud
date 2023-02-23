@@ -1,0 +1,307 @@
+<?php
+echo 'begin connection.php';
+
+///include_once 'dbConfig.php';
+
+class Connection
+
+//    var $tableFieldNames = array(); 
+    protected $db =null;
+ 
+    protected $conn =null;
+ 
+    public function Open()
+    {
+        try {
+//        $dsn      = "mysql:dbname=pdotutorial; host=localhost";
+//        $dsn      = "mysql:dbname=$dbName; host=$dbHost";
+
+        $dsn      = "mysql:dbname=qrcode1; host=localhost";
+        $user     = "qrcode1";
+        $password = "qrcode1";
+
+
+
+        $dsn      = "mysql:dbname=qrcode1; host=localhost";
+        $password = "qrcode1";
+//        $user     = $dbUser;
+        $user     = = $dbPwd;
+        $password = "qrcode1";
+//        $password = $dbPwd;
+        $password = "qrcode1";
+ 
+        $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE                      => PDO::FETCH_ASSOC,
+        );
+ 
+ 
+ 
+            $this->db = new PDO($dsn, $user, $password, $options);
+//            $this->conn = new PDO($dsn, $user, $password, $options);
+ 
+            return $this->db;
+        } catch (PDOException $e) {
+            echo 'Connection failed: ' . $e->getMessage();
+        }
+    }
+
+
+/*
+    public function fieldNames($tableName)
+    {
+        echo "begin fielldNames";         
+        $this->db = $this->open();
+
+        //$columnsquery = $this->db->query("PRAGMA table_info($tableName)");
+        //$columnsquery = $this->db->prepare("PRAGMA table_info($tableName)");
+        //$stmt = $this->db->prepare("PRAGMA table_info($tableName)");
+        $stmt = $this->db->prepare("DESCRIBE $tableName");
+
+        //$stmt->bindValue(':table', $tableName, PDO::PARAM_STR);
+        //$columnsquery = $stmt->execute();
+        
+        $stmt->execute();
+        $table_fields = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        print_r ($table_fields);
+        
+        $this->tableFieldNames = $table_fields;
+
+
+        $columns = array();
+        foreach ($columnsquery as $k) {
+            $columns[] = $k['name'];
+        }
+
+        return $columns;
+    }
+
+
+*/
+
+
+  
+/*
+  public function list()
+    {
+        echo "<br/>begin list<br/>";
+        $arrList =  $this->query();
+
+ 
+    }
+*/
+    public function query()
+    {
+        echo "<br/>begin list<br/>";
+        $arrList =  $this->query();
+
+ 
+    }
+/*
+    public function queryList($query)
+    {
+        echo "<br/>begin querylist<br/>";
+
+        // select
+//        $stmt = $this->conn->prepare('select * from users');
+        $con = $this->conn;
+//        echo $con;
+//        $stmt = $con->prepare('select * from users');
+//        $stmt = $this->db->prepare('select * from users');
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        $arrs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+//        print_r($arrs);
+//        foreach ($arrs as $row)
+
+//        print ("<form action='update.php' method='POST' >");
+
+echo "here comes the insert new record";
+
+print ("<form action= 'insert.php' method= 'POST' >");
+
+
+print (" click on the next button to insert a new record");
+
+print (" <input type= 'submit' value= 'insert' />" );
+
+print ("</form>");
+
+print ("<table border=1>");
+print ("<tr>");
+
+print ("<th>");
+
+print ("id");
+print ("</th>");
+
+print ("<th>");
+print ("firstName");
+print ("</th>");
+
+print ("<th>");
+print ("lastName");
+print ("</th>");
+
+print ("/<tr>");
+//print ("<tr>");
+
+//foreach ($arrs as $key => $value) {
+foreach ($arrs as $arr) 
+{
+    print ("<tr>");
+
+    print ("<form action='update.php' method='POST' >");
+
+
+    foreach ($arr as $key => $value) 
+    {
+    // $arr[3] will be updated with each value from $arr...
+    //echo "{$key} => {$value} ";
+        //print ("{$key} => {$value} ");
+
+
+        //print ("<td>");
+        //print ("{$key}");
+        if ($key == 'id')
+           $id = $value;
+        //print ("</td>");
+        print ("<td>");
+        print ("{$value}");
+        print ("</td>");
+
+
+
+  
+
+
+        print ("<td>");
+        print ("{$key}");
+        print ("</td>");
+        print ("<td>");
+        print ("{$value}");
+        print ("</td>");
+
+ 
+
+
+ 
+ 
+    //print_r($arr);
+    }
+
+    print ("<form action='update..php' method='POST' >");
+
+    print ("<td>");
+    print ("<input type='hidden' name= 'id' value= $id />");
+    print ("<input type='hidden' name= 'firstName' value= $firstName />");
+    print ("<input type='hidden' name= 'lstaName' value= $lastName />");
+    print ("<input type='submit' value= 'update' />");
+    print ("</td>");
+    print ("</form>");       
+
+    print ("<form action='delete.php' method='POST' >");
+   
+
+    print ("<td>");
+    print ("<input type='hidden' name= 'id' value= $id />");
+
+
+    print ("<input type='submit' value= 'delete'/>");
+
+    print ("</td>");
+    print ("</form>");       
+
+
+
+    print ("</tr>");
+}
+print ("</table>");
+
+ //       print ("</form>");       
+
+
+
+        foreach ($arrs as $key => $value)
+        { 
+            echo {$key};
+            echo {$values};
+            //print ({$key}) . "\t";
+            //print ({$value}) . "\t";
+            //print $row['fistName'] . "\t";
+            //print $row['lastName'] . "\t";
+
+
+        }
+
+
+        $sql = 'SELECT firstname, lastName FROM users';
+        foreach ($this->query($sql) as $row) 
+        {
+            print $row['fistName'] . "\t";
+            print $row['lastName'] . "\t";
+//            print $row['calories'] . "\n";
+        } 
+        //$arrList =  $this->query();
+
+ 
+    }
+*/
+/*
+    public function queryListOne($id)
+    {
+        echo "begin listOne";
+        //$stmt = $this->db->prepare('select * from users where id = $id');
+        $stmt = $this->db->prepare('select * from users where id= ?');
+        //$stmt = $this->db->prepare('select * from users where id=:id'); // works
+
+        //$stmt = $this->db->prepare('select * from users');
+        //$stmt->execute(['id' => $id]);
+        $stmt->execute([$id]);
+
+        //$arrs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $arrs = $stmt->fetch();
+
+        print ("arrs = ");
+        print_r($arrs);
+        return $arrs;
+
+
+    }
+
+
+*/
+
+
+
+    public function delete($id)
+    { 
+
+        echo "begin delete";
+        $sql = "DELETE FROM users WHERE id=?";
+        $stmt= $this->db->prepare($sql);
+        $stmt->execute([$id]);
+    }
+ 
+    public function update($firstName, $lastName, $id)
+    { 
+        echo "begin update";
+        $sql = "UPDATE users SET firstName=?, lastName=? WHERE id=?";
+        $stmt= $this->db->prepare($sql);
+        $stmt->execute([$firstName, $lastName, $id]);
+        
+    }
+ 
+
+ 
+    public function Close()
+    {
+        $this->db = null;
+        return true;
+    }
+}
+
+
+?>
