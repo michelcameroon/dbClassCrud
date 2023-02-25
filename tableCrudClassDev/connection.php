@@ -175,8 +175,8 @@ class Connection
 
         $arrs = $stmt->fetch();
 
-        print ("arrs = ");
-        print_r($arrs);
+        //print ("arrs = ");
+        //print_r($arrs);
         return $arrs;
 
 

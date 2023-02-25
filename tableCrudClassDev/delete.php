@@ -25,45 +25,44 @@ print ("rec1 = ");
 print_r ($rec1);
 
 
-$del1 = $conec->delete($id);
+    print ('<table border=1>'); 
+
+    print ("<form action= 'delete1.php' method = 'POST'> ");
+
+    foreach ($rec1 as $key => $value)
+    { 
+        print ("<tr><td>");
+        print ($key);
+        print ("</td>");
+        print ("<td>");
+
+        print ("<input type= 'text' name= $key value= $value />");
+        print ("</td></tr>");
+     
+    }
+
+    print ("<tr><td>");
+
+    print ("<input type= 'submit' value= 'delete' />");
+    print ("</td></tr>");
+
+    print ("</table>");
+
+
+    print ("</form>");
 
 
 
 
-echo " until here";
+
+//$del1 = $conec->delete($id);
 
 
 
-//include_once 'connection.php';
-//$conec = new Connection();
-
-//$db1 = $conec->db;
-
-//$con = $conec->Open();
-//$con = $db1->Open();
-//echo $con;
-//list = $conec->queryList();
 
 
-
-//        $con = $this->conn;
-//        echo $con;
-//        $stmt = $con->prepare('select * from users');
-
-
-//        $stmt = $this->db->prepare('select * from users where id = 10');
-//        $stmt = $conec->db->prepare('select * from users where id = 10');
-//        $stmt = $conec->prepare('select * from users where id = 10');
-//        $stmt = $db1->prepare('select * from users where id = 10');
-
-//        $stmt->execute();
-
-//        $arrs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-//        print_r($arrs);
 
 $newURL = 'tConnection.php';
-header('Location: '.$newURL);
+//header('Location: '.$newURL);
 
 ?>
