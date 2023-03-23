@@ -17,15 +17,46 @@ $db = new DatabaseClass(
         "qrcode1",
         "qrcode1"
     );
-*/
 print ('after new db');
-$rows = $db->select('select * from users');
+$rows = $db->select('select * from product');
 print_r($rows);
+*/
+
 $db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
 //$dba = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname); 
 print ('after new');
 //print ($db1->connection);
-$rows = $db1->select('select * from users');
+$rows = $db1->tableChoosed('SHOW TABLES');
 print_r($rows);
+print ('<br>');
+
+print ('<table border=1>');
+
+foreach ($rows as $row)
+{
+    ///print($row);
+    foreach ($row as $key => $value)
+    {
+        print ('<tr>');
+        print ('<td>');
+        print ("<form action='list.php' method='POST' >");
+        print ("<input type='hidden' name='tableName' value=$value />");
+        print ($value);
+        print ('</td>');
+        print ('<td>');
+
+        print ("<input type='submit' value='Choose me' />");
+        print ('</form>');
+        print ('</td>');
+        print ('</tr>');
+
+  
+    }   
+    
+}
+print ('</table>');
+
+
+
 echo '<br>end tDatabaseClass<br>';
 ?>

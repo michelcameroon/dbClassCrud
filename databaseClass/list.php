@@ -1,0 +1,66 @@
+<?php
+
+include_once 'DatabaseClass.php';
+include_once 'dbConfig.php';
+
+
+$post = $_POST;
+
+print_r ($post);
+
+$tableName = $post['tableName'];
+
+$db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
+//$dba = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname); 
+print ('after new');
+
+//print ($db1->connection);
+$rows = $db1->select('SELECT * FROM ' . $tableName);
+
+//print_r ($rows);
+
+print ('<h1> list </h1>');
+print ('<h2>' .  $tableName . '</h2>');
+
+
+print ('<table border=1>');
+
+foreach ($rows as $row)
+{
+   //print ($row);
+   print ('<tr>');  
+   foreach ($row as $key => $value)
+   {
+       //print ($key);
+       print ('<td>');
+       if ($key= 'id')
+           $id = $value;
+       print ($value);
+       print ('</td>');
+   }
+   print ('<td>');
+   print ("<form action='update.php' methode='POST' >");
+   print ("<input type='hidden' name= 'id' value= $id / >");
+   print ("<input type='submit' value= 'update' / >");
+   print ('</form>');
+   //print ('update');
+   print ('</td>');
+   print ('<td>');
+   print ("<form action='delete.php' methode='POST' >");
+   print ("<input type='hidden' name= 'id' value= $id / >");
+   print ("<input type='submit' value= 'delete' / >");
+   print ('</form>');
+
+   //print ('delete');
+
+
+   print ('</td>');
+   print ('</tr>');  
+
+}
+
+print ('</table>');
+
+
+
+?>

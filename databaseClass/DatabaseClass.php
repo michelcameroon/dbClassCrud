@@ -116,8 +116,33 @@ class DatabaseClass{
         }
 	
     }
+
+    // Select a row/s in a Database Table
+    public function TableChoosed( $query = "" , $params = [] ){
+        try{
+
+
+            $stmt = $this->executeStatement( $query , $params );
+
+            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);           
+            $stmt->close();
+    
+    
+
+            return $result;
+
+        }catch(Exception $e){
+            throw New Exception( $e->getMessage() );
+        }
+
+        return false;
+
+    }
+    
 		
 }
+
+
 
 /*
 $db = new DatabaseClass(
