@@ -23,11 +23,9 @@ print ('<h1> list </h1>');
 print ('<h2>' .  $tableName . '</h2>');
 
 print ('new record');
+print ('')
 
-print ("<form action='insert.php' method='POST'>");
-print ("<input type='hidden' name='tableName' value=$tableName>");
-print ("<input type='submit' value='insert'>");
-print ("</form>");
+
 
 print ('<table border=1>');
 
