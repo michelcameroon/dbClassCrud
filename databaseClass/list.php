@@ -39,21 +39,26 @@ foreach ($rows as $row)
    {
        //print ($key);
        print ('<td>');
-       if ($key= 'id')
+       if ($key== 'id')
+       {
            $id = $value;
+           print ('<br>$id<br>');
+       }
        print ($value);
        print ('</td>');
    }
    print ('<td>');
-   print ("<form action='update.php' methode='POST' >");
+   print ("<form action='update.php' method='POST' >");
    print ("<input type='hidden' name= 'id' value= $id / >");
+   print ("<input type='hidden' name='tableName' value=$tableName>");
    print ("<input type='submit' value= 'update' / >");
    print ('</form>');
    //print ('update');
    print ('</td>');
    print ('<td>');
-   print ("<form action='delete.php' methode='POST' >");
+   print ("<form action='delete.php' method='POST' >");
    print ("<input type='hidden' name= 'id' value= $id / >");
+   print ("<input type='hidden' name='tableName' value=$tableName>");
    print ("<input type='submit' value= 'delete' / >");
    print ('</form>');
 
