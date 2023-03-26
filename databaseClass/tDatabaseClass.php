@@ -1,35 +1,20 @@
 <?php
-echo '<br>begin tDatabaseClass<br>';
+//echo '<br>begin tDatabaseClass<br>';
 
 include_once 'DatabaseClass.php';
 include_once 'dbConfig.php';
-print ('before new');
+
 
 //print ($dbhost, $dbuser, $dbpass, $dbname);
 
-$db = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
-//$db = new DatabaseClass("localhost", "qrcode1", "qrcode1", "qrcode1");
-
-/*
-$db = new DatabaseClass(
-        "localhost",
-        "qrcode1",
-        "qrcode1",
-        "qrcode1"
-    );
-print ('after new db');
-$rows = $db->select('select * from product');
-print_r($rows);
-*/
 
 $db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
-//$dba = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname); 
-print ('after new');
+
 //print ($db1->connection);
 $rows = $db1->tableChoosed('SHOW TABLES');
-print_r($rows);
+//print_r($rows);
 print ('<br>');
-
+print ('<h1> list tables in this database </h1>');
 print ('<table border=1>');
 
 foreach ($rows as $row)
@@ -58,5 +43,5 @@ print ('</table>');
 
 
 
-echo '<br>end tDatabaseClass<br>';
+//echo '<br>end tDatabaseClass<br>';
 ?>

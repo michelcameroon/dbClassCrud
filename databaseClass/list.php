@@ -6,13 +6,12 @@ include_once 'dbConfig.php';
 
 $post = $_POST;
 
-print_r ($post);
+//print_r ($post);
 
 $tableName = $post['tableName'];
 
 $db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
 //$dba = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname); 
-print ('after new');
 
 //print ($db1->connection);
 $rows = $db1->select('SELECT * FROM ' . $tableName);
@@ -42,7 +41,7 @@ foreach ($rows as $row)
        if ($key== 'id')
        {
            $id = $value;
-           print ('<br>$id<br>');
+           //print ('<br>$id<br>');
        }
        print ($value);
        print ('</td>');

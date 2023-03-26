@@ -1,5 +1,5 @@
 <?php
-echo 'begin DatabaseClass';
+//echo 'begin DatabaseClass';
 //include_once 'dbConfig.php';
 
 class DatabaseClass{	
@@ -143,18 +143,6 @@ class DatabaseClass{
 }
 
 
-
-/*
-$db = new DatabaseClass(
-        "localhost",
-        "qrcode1",
-        "qrcode1",
-        "qrcode1"
-    );
-
-*/
-
-
-echo '<br>end DatabaseClass<br>';
+//echo ' <br>end DatabaseClass<br>';
 ?>
 

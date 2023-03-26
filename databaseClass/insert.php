@@ -6,28 +6,26 @@ include_once 'dbConfig.php';
 
 $post = $_POST;
 
-print_r ($post);
+//print_r ($post);
 
 $tableName = $post['tableName'];
-print ($tableName);
+//print ($tableName);
 
 
 $db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
 //$dba = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname); 
-print (' new db1'. $tableName);
+
+
+print ('<h1> insert </h1>');
+
 
 $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME= " . "'$tableName'";
 
-print ($sql);
-/*
-$sql = "SELECT COLUMN_NAME 
-FROM INFORMATION_SCHEMA.COLUMNS 
-WHERE TABLE_SCHEMA='qrcode1' 
-    AND TABLE_NAME='presence'";
-*/
+//print ($sql);
+
 
 $fieldNames = $db1->Select($sql);
-print_r($fieldNames);
+//print_r($fieldNames);
 
 
 print ('<table border=1>');
@@ -42,17 +40,20 @@ foreach ($fieldNames as $fieldName)
     //print ($fieldName);
     foreach ($fieldName as $key => $value)
     {
-        print ('<tr>');
-        print ('<td>');
-        print ($value);
-        print ('</td>');
-        print ('<td>');
+        if ($value != 'id')
+        {
+            print ('<tr>');
+            print ('<td>');
+            print ($value);
+            print ('</td>');
+            print ('<td>');
 
-        print ("<input type='text' name=$value value=''>");
-        print ('</td>');
+            print ("<input type='text' name=$value value=''>");
+            print ('</td>');
 
 
-        print ('</tr>');
+            print ('</tr>');
+        }
 
     }
 } 

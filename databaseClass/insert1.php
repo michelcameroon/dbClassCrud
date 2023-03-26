@@ -6,7 +6,7 @@ include_once 'dbConfig.php';
 
 $post = $_POST;
 
-print_r ($post);
+//print_r ($post);
 
 
 $fieldKeys = '';
@@ -37,21 +37,20 @@ foreach ($post as $key => $value)
     }    
 
 }
-echo 'after foreach';
-print ($fieldKeys);
-print ($fieldValues);
+//echo 'after foreach';
+//print ($fieldKeys);
+//print ($fieldValues);
 
 $tableName = $post['tableName'];
 
 $db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
 //$dba = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname); 
-print ('<br>after new<br>');
 
 
 
 $insert = "insert into $tableName ($fieldKeys) values ($fieldValues)";
 //$insert = "insert into $tableName (fkUsers, dateTime) values (2, 2023/23/03)";
-print ($insert);
+//print ($insert);
 
 $db1->insert($insert);
 
