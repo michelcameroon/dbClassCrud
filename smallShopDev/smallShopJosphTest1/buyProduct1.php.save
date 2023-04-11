@@ -1,0 +1,115 @@
+<?php
+echo '<br>begin buy1<br>';
+$post = $_POST;
+$price = $post['price'];
+$howMany = $post['howMany'];
+
+print_r ($post);
+$idProduct = $post['idProduct'];
+//$howMany = $post['howMany'];
+
+
+//echo '<br>begin buy<br>';
+include_once 'menu.php';
+include_once 'databaseClass/DatabaseClass.php';
+include_once 'databaseClass/ArrTb.php';
+
+print ('<h1>buyProduct1</h1>');
+
+//$GLOBALS['newCommand'] = True;
+
+$pwd = '';
+$pwd = getcwd();
+//print ($pwd);
+chdir('databaseClass');
+$pwd = getcwd();
+//print ($pwd);
+//print ('<br>before new<br> ');
+//print ('dbhost');
+//print ($dbhost);
+//print ('<br>');
+//print ($dbuser);
+//print ('dbuser');
+$db1 = new DatabaseClass($dbhost, $dbuser, $dbpass, $dbname);
+//$db1 = new DatabaseClass('localhost', 'smallShop', 'smallShop', 'smallShop');
+
+
+
+// list commandLine
+$sql = 'select * from commandLine where fkCommand = ' . $db1->dbCommandId;
+//$sql = 'select * from commandLine where fkCommand = ' . $dbCommandId;
+
+print ($sql);
+
+
+//$db1->list
+$commandLines = $db1->Select($sql);
+print ('<br>commandLine<br>');
+print_r ($commandLines);
+
+if (empty($commandLines)) {
+    echo 'le basket est encore vide $var is either 0, empty, or not set at all';
+
+    // create a new command
+    $now1 = date('Y-m-d H:i:s');
+    print ($now1);
+
+    print ('now = ');
+    print ($now1);
+    //    $sql = 'insert into command (now, total) values (now(), 0)';
+    //    $sql = "insert into command (now, total) values ('2022/05/05', 0)";
+    $sql = "insert into command (now, total) values ('$now1', 0)";
+    //    $sql = "insert into command (now, total) values ('2023-03-30 15:02:03>
+    print ($sql);       
+    $dbCommandId = $db1->Insert($sql);
+    //$db1->dbCommandId = $db1->Insert($sql);
+    $db1->dbCommandId = $dbCommandId;
+
+    //$dbCoomandId = $db1->Insert($sql);
+    //$db1->dbCommandId = $db1->Insert($sql);
+    print ($dbCommandId);
+
+
+}
+
+
+// insert in commandLine
+
+$subTotal = $howMany * $price;
+print ('<br>subtotal = <br>');
+print ($subTotal);
+ 
+$sql = "insert into commandLine (fkCommand, fkProduct, howMany, subtotal) values ($dbCommandId, $idProduct, $howMany, $subTotal)"; 
+print ($sql);
+$commandLineInsertId = $db1->insert($sql);
+print ('<br>commandLineInsertId = <br>'); 
+print ($commandLineInsertId); 
+
+// list commandLine
+$sql = 'select * from commandLine where fkCommand = ' . $db1->dbCommandId;
+//$sql = 'select * from commandLine where fkCommand = ' . $dbCommandId;
+
+print ($sql);
+
+
+//$db1->list
+$commandLines = $db1->Select($sql);
+print ('<br>commandLine<br>');
+
+print ('commandLines = ');
+print_r ($commandLines);
+
+$dbCommandId = $commandLines['fkC]
+
+//$sql = 'select * from  product where id = ' . $id;
+$sql = 'select * from product';
+$products = $db1->Select($sql);
+
+
+print ($id);
+print ($sql);
+
+$arrs = $db1->Select($sql);
+
+print_r ($arrs);  
+
